@@ -15,7 +15,6 @@ class BinarySearchTree {
 
   add(data) {
     this.tree = addNode(this.tree, data)
-
     function addNode(node, data) {
       if (!node) {
         return new Node(data)
@@ -34,8 +33,6 @@ class BinarySearchTree {
   }
 
   find(data) {
-    return findNode(this.tree, data)
-
     function findNode(node, data) {
       if (!node) {
         return null
@@ -47,11 +44,22 @@ class BinarySearchTree {
         ? findNode(node.left, data)
         : findNode(node.right, data)
     }
+    return findNode(this.tree, data)
   }
 
-  has(/* data */) {
-    // Remove line below and write your code here
-    throw new NotImplementedError('Not implemented')
+  has(data) {
+    function hasNode(node, data) {
+      if (!node) {
+        return false
+      }
+      if (node.data === data) {
+        return true
+      }
+      return data < node.data
+        ? hasNode(node.left, data)
+        : hasNode(node.right, data)
+    }
+    return hasNode(this.tree, data)
   }
 
   remove(/* data */) {
